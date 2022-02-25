@@ -1,8 +1,9 @@
 # TrackList
 App which can keep records of Tracks of any Artist<br>
-Database work is done using Firebase
+Authentication and Database work is done using Firebase
 
 What can we do ?
-- Can Add Artist
-- Create Track list
+- Create Account
+- Can Add Multiple Artist
+- Create Track list of each Artist
 - Can Update/Delete items  
