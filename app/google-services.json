@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "458046275291",
+    "project_id": "track-list-4d0d5",
+    "storage_bucket": "track-list-4d0d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458046275291:android:fc2f8ca858fc1b7b1a96fe",
+        "android_client_info": {
+          "package_name": "com.abhishek.tracklist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "458046275291-d5sahibd511je65gbcfnireefb7qa1or.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwoGHvLGYi6m78VvrK2TzavFggzsCxLQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "458046275291-d5sahibd511je65gbcfnireefb7qa1or.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

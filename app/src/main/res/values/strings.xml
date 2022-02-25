@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TrackList</string>
+
+    <array name="genres">
+        <item>Rock</item>
+        <item>Pop</item>
+        <item>Sufi</item>
+        <item>Folk</item>
+    </array>
+
+</resources>
