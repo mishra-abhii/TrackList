@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AddTrack extends AppCompatActivity {
 
@@ -37,6 +39,7 @@ public class AddTrack extends AppCompatActivity {
     List<Track> trackList;
     ListView listViewTracks;
 
+    FirebaseAuth auth;
     DatabaseReference databaseReference;
 
     @Override
@@ -54,13 +57,16 @@ public class AddTrack extends AppCompatActivity {
         listViewTracks = findViewById(R.id.listViewTracks);
 
         // code to get data passed through intent putExtra
+        // to give same id to child of Tracks(node) as of the respective child's id of the Artist(node)
         Intent intent = getIntent();
         String id = intent.getStringExtra(MainActivity.ARTIST_ID);
         String name = intent.getStringExtra(MainActivity.ARTIST_NAME);
         tvArtistName.setText(name);
 
-        // Giving same id to child of Tracks(node) as of the respective child's id of the Artist(node)
-        databaseReference = FirebaseDatabase.getInstance().getReference("Tracks").child(id);
+
+        auth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance()
+                .getReference().child("Users").child(Objects.requireNonNull(auth.getUid())).child("Tracks").child(id);
 
         btnAddTrack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,8 +124,12 @@ public class AddTrack extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
-                String id = intent.getStringExtra(MainActivity.ARTIST_ID);
-                DatabaseReference drTrackDelete = FirebaseDatabase.getInstance().getReference("Tracks").child(id).child(trackId);
+                String id1 = intent.getStringExtra(MainActivity.ARTIST_ID);
+                DatabaseReference drTrackDelete = FirebaseDatabase.getInstance()
+                        .getReference()
+                        .child("Users")
+                        .child(Objects.requireNonNull(auth.getUid()))
+                        .child("Tracks").child(id1).child(trackId);
 
                 drTrackDelete.removeValue();
                 alertDialog.dismiss();

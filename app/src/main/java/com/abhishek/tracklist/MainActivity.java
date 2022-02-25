@@ -9,6 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -17,6 +20,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     ListView listViewArtist;
     List<Artist> artistList;
 
+    private FirebaseAuth auth;
     DatabaseReference databaseReference;
 
     @Override
@@ -45,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("TrackList");
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Artist"); // path is used to create node named Artist
+        auth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance()
+                .getReference().child("Users").child(Objects.requireNonNull(auth.getUid())).child("Artist"); // path is used to create node named Artist
 
         etArtistName = findViewById(R.id.etArtistName);
         btnAddArtist = findViewById(R.id.btnAddArtist);
@@ -160,10 +168,13 @@ public class MainActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference drArtist = FirebaseDatabase.getInstance().getReference("Artist").child(artistId);
-                DatabaseReference drTrack = FirebaseDatabase.getInstance().getReference("Tracks").child(artistId);
 
-                drArtist.removeValue();
+                databaseReference.child(artistId).removeValue();
+                DatabaseReference drTrack = FirebaseDatabase.getInstance()
+                        .getReference().child("Users")
+                        .child(Objects.requireNonNull(auth.getUid()))
+                        .child("Tracks").child(artistId);
+
                 drTrack.removeValue();
                 alertDialog.dismiss();
 
@@ -191,5 +202,22 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu , menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.logout) {
+            auth.signOut();
+            Intent intent = new Intent(MainActivity.this, SignIn_Activity.class);
+            finish();
+        }
+        return true;
     }
 }
