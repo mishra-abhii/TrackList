@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String ARTIST_ID = "artistid";  // created for the ref purpose to pass data from one activity to other while using intent
 
     EditText etArtistName;
-    Button btnAddArtist;
+    TextView btnAddArtist;
     Spinner spinner;
     ListView listViewArtist;
     List<Artist> artistList;
@@ -138,8 +139,8 @@ public class MainActivity extends AppCompatActivity {
 //        final TextView tvOldName = dialogView.findViewById(R.id.tvOldName);
         final EditText etNewName = dialogView.findViewById(R.id.etNewName);
         final Spinner spinner2 = dialogView.findViewById(R.id.spinner_update);
-        final Button btnUpdate = dialogView.findViewById(R.id.btnUpdate);
-        final Button btnDelete = dialogView.findViewById(R.id.btnDelete);
+        final TextView btnUpdate = dialogView.findViewById(R.id.btnUpdate);
+        final TextView btnDelete = dialogView.findViewById(R.id.btnDelete);
 
         dialogBuilder.setTitle("Update Artist Name");
         AlertDialog alertDialog = dialogBuilder.create();
@@ -217,6 +218,10 @@ public class MainActivity extends AppCompatActivity {
             auth.signOut();
             Intent intent = new Intent(MainActivity.this, SignIn_Activity.class);
             finish();
+        }
+
+        if (item.getItemId() == R.id.developer) {
+            Toast.makeText(this, "Abhishek Mishra", Toast.LENGTH_LONG).show();
         }
         return true;
     }

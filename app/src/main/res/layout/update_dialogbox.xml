@@ -29,30 +29,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="center|end"
         android:orientation="horizontal">
 
-        <Button
+        <TextView
             android:id="@+id/btnUpdate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="12dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/btn_color"
-            android:text="Update"
-            android:textSize="16sp" />
+            android:background="@drawable/btn_border"
+            android:gravity="center"
+            android:text="UPDATE"
+            android:textColor="@color/Actionbar_color"
+            android:textSize="16sp"
+            android:textStyle="normal" />
 
-        <Button
+        <TextView
             android:id="@+id/btnDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/btn_color"
-            android:text="Delete"
-            android:textSize="16sp" />
+            android:background="@drawable/btn_border"
+            android:gravity="center"
+            android:text="DELETE"
+            android:textColor="@color/Actionbar_color"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
     </LinearLayout>
 
 </LinearLayout>

@@ -1,6 +1,10 @@
 package com.abhishek.tracklist;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -15,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,10 +36,12 @@ import java.util.Objects;
 
 public class AddTrack extends AppCompatActivity {
 
-    TextView tvArtistName;
+    private static final CharSequence COPY_LIST = "copiedlist";
+    TextView tvArtistName , tvCopy;
     EditText etTrackName;
-    Button btnAddTrack;
+    TextView btnAddTrack;
     RatingBar ratingBar;
+    String name;
 
     List<Track> trackList;
     ListView listViewTracks;
@@ -49,6 +56,7 @@ public class AddTrack extends AppCompatActivity {
         setTitle("TrackList");
 
         tvArtistName = findViewById(R.id.tvArtistName);
+        tvCopy = findViewById(R.id.tvCopy);
         etTrackName = findViewById(R.id.etTrackName);
         btnAddTrack = findViewById(R.id.btnAddTrack);
         ratingBar = findViewById(R.id.ratingBar);
@@ -60,7 +68,7 @@ public class AddTrack extends AppCompatActivity {
         // to give same id to child of Tracks(node) as of the respective child's id of the Artist(node)
         Intent intent = getIntent();
         String id = intent.getStringExtra(MainActivity.ARTIST_ID);
-        String name = intent.getStringExtra(MainActivity.ARTIST_NAME);
+        name = intent.getStringExtra(MainActivity.ARTIST_NAME);
         tvArtistName.setText(name);
 
 
@@ -89,6 +97,14 @@ public class AddTrack extends AppCompatActivity {
             }
         });
 
+        tvCopy.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                copyList();
+            }
+        });
+
         listViewTracks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -97,6 +113,26 @@ public class AddTrack extends AppCompatActivity {
                 showDeleteDialog(track.getTrackId(), track.getTrackName());
             }
         });
+
+    }
+
+    // code to pass data from the list to string builder object
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void copyList(){
+        StringBuilder ListItems = new StringBuilder();
+        ListItems.append("Artist name : ").append(name).append("\n").append("\n");
+        for (int i = 0; i < trackList.size(); i++) {
+            ListItems.append("Track Name : ").append(trackList.get(i).getTrackName()).append("\n");
+            ListItems.append("Track Rating : ").append(trackList.get(i).getTrackRating()).append("\n\n");
+        }
+
+//      Below code is used to copy the list to clipboard
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText(COPY_LIST, ListItems);
+        clipboard.setPrimaryClip(clip);
+
+        Toast.makeText(this, "Track list copied", Toast.LENGTH_SHORT).show();
+
 
     }
 
@@ -111,7 +147,7 @@ public class AddTrack extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
 
         final TextView tv_track_name = dialogView.findViewById(R.id.tv_track_name);
-        final Button btnDeleteTrack = dialogView.findViewById(R.id.btnDeleteTrack);
+        final TextView btnDeleteTrack = dialogView.findViewById(R.id.btnDeleteTrack);
 
         tv_track_name.setText(trackName);
 

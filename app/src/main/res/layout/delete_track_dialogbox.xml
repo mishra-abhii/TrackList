@@ -35,26 +35,31 @@
     <View
         android:id="@+id/view3"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_marginStart="21dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="21dp"
         android:background="@color/CardView_color" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="center|end"
         android:orientation="horizontal">
 
-        <Button
+        <TextView
             android:id="@+id/btnDeleteTrack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="25dp"
-            android:background="@drawable/btn_color"
-            android:text="Delete"
-            android:textSize="16sp" />
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_border"
+            android:gravity="center"
+            android:text="DELETE"
+            android:textColor="@color/Actionbar_color"
+            android:textSize="16sp"
+            android:textStyle="normal" />
     </LinearLayout>
 
 </LinearLayout>

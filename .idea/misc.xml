@@ -3,14 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ABHISHEK/AndroidStudioProjects/TrackList/app/src/main/res/drawable/btn_border.xml" value="0.139" />
         <entry key="..\:/Users/ABHISHEK/AndroidStudioProjects/TrackList/app/src/main/res/drawable/btn_color.xml" value="0.115" />
+        <entry key="..\:/Users/ABHISHEK/AndroidStudioProjects/TrackList/app/src/main/res/drawable/splash_bg.xml" value="0.139" />
         <entry key="..\:/Users/ABHISHEK/AndroidStudioProjects/TrackList/app/src/main/res/layout/activity_add_track.xml" value="0.22" />
         <entry key="..\:/Users/ABHISHEK/AndroidStudioProjects/TrackList/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/ABHISHEK/AndroidStudioProjects/TrackList/app/src/main/res/layout/activity_sign_in.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/ABHISHEK/AndroidStudioProjects/TrackList/app/src/main/res/layout/activity_sign_up.xml" value="0.18229166666666666" />
-        <entry key="..\:/Users/ABHISHEK/AndroidStudioProjects/TrackList/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
+        <entry key="..\:/Users/ABHISHEK/AndroidStudioProjects/TrackList/app/src/main/res/layout/activity_splash_screen.xml" value="0.22" />
         <entry key="..\:/Users/ABHISHEK/AndroidStudioProjects/TrackList/app/src/main/res/layout/delete_track_dialogbox.xml" value="0.22" />
-        <entry key="..\:/Users/ABHISHEK/AndroidStudioProjects/TrackList/app/src/main/res/layout/list_layout.xml" value="0.1" />
+        <entry key="..\:/Users/ABHISHEK/AndroidStudioProjects/TrackList/app/src/main/res/layout/list_layout.xml" value="0.22" />
         <entry key="..\:/Users/ABHISHEK/AndroidStudioProjects/TrackList/app/src/main/res/layout/track_layout.xml" value="0.22" />
         <entry key="..\:/Users/ABHISHEK/AndroidStudioProjects/TrackList/app/src/main/res/layout/update_dialogbox.xml" value="0.22" />
       </map>

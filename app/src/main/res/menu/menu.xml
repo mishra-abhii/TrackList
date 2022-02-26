@@ -6,4 +6,9 @@
         android:title="Logout"
         />
 
+    <item
+        android:id="@+id/developer"
+        android:title="Developer"
+        />
+
 </menu>

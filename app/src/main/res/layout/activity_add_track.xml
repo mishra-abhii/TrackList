@@ -29,9 +29,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="3dp"
         android:layout_marginEnd="15dp"
         android:ems="10"
+        android:gravity="start"
         android:hint="Enter Track name"
         android:inputType="textPersonName"
         android:textColor="@color/black"
@@ -52,19 +52,23 @@
             android:rating="3.5"
             android:scaleX="0.7"
             android:scaleY="0.6"
-            android:stepSize="0.5" />
+            android:stepSize="0.5"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
 
-    <Button
+    <TextView
         android:id="@+id/btnAddTrack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
         android:layout_gravity="end"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="15dp"
-        android:background="@drawable/btn_color"
-        android:text="Add Track" />
+        android:background="@drawable/btn_border"
+        android:gravity="center"
+        android:text="Add Track"
+        android:textColor="@color/Actionbar_color"
+        android:textSize="18sp" />
 
     <View
         android:id="@+id/view"
@@ -77,12 +81,13 @@
         android:background="@color/CardView_color" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvCopy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="7dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="30dp"
+        android:drawableEnd="?attr/actionModeCopyDrawable"
         android:gravity="center"
         android:text="Tracks"
         android:textColor="@color/black"
@@ -106,7 +111,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="10dp"
         android:clickable="false"
