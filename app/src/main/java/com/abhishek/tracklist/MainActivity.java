@@ -91,9 +91,13 @@ public class MainActivity extends AppCompatActivity {
                 Artist artist = artistList.get(i);
 
                 showUpdateDialog(artist.getArtistId() , artist.getArtistName());
-                return false;
+
+                            // issue solved of opening both dialog box and track list page at the same time
+                return true; // here by default false was present but by making it true it ensures that onItemClick event will not occur
+                            // only onItemLongClick event will take place.
             }
         });
+
     }
 
     // code to fetch data from firebase
