@@ -33,11 +33,10 @@ public class SignUp_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-//       binding = ActivitySignUpBinding.inflate(getLayoutInflater());   /* code for view binding */
-//        View view = binding.getRoot();
-//        setContentView(view);  /* code is changed within bracket */
+
 
         Objects.requireNonNull(getSupportActionBar()).hide(); /* To remove action bar form this particular activity as by default it is set for all activity*/
+        
         etUsername = findViewById(R.id.etUsername);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
@@ -78,14 +77,16 @@ public class SignUp_Activity extends AppCompatActivity {
                             progressDialog.dismiss();
 
                             if (task.isSuccessful()) {
-                                /* use of Users class we have made in models package */
+                                /* use of Users class we have made */
                                 Users user = new Users(etUsername.getText().toString(), etEmail.getText().toString(), auth.getUid());
-
-                                database.getReference().child("Users").child(Objects.requireNonNull(auth.getUid())).setValue(user); // Creating a node named 'Users' in which data of diff user will be stored who create account
+                                
+                                // Creating a node named 'Users' in which data of diff user will be stored who create account
+                                database.getReference().child("Users").child(Objects.requireNonNull(auth.getUid())).setValue(user); 
                                 Toast.makeText(SignUp_Activity.this, "Account created Successfully", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(SignUp_Activity.this , MainActivity.class);
                                 startActivity(i);
                                 finish();
+                                
                             } else {
                                 Toast.makeText(SignUp_Activity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                             }
