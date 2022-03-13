@@ -34,8 +34,9 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String ARTIST_NAME = "artistname"; // created for the ref purpose to pass data from one activity to other while using intent
-    public static final String ARTIST_ID = "artistid";  // created for the ref purpose to pass data from one activity to other while using intent
+    // created for the ref purpose to pass data from one activity to other while using intent
+    public static final String ARTIST_NAME = "artistname"; 
+    public static final String ARTIST_ID = "artistid";  
 
     EditText etArtistName;
     TextView btnAddArtist;
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance()
-                .getReference().child("Users").child(Objects.requireNonNull(auth.getUid())).child("Artist"); // path is used to create node named Artist
+                .getReference().child("Users").child(Objects.requireNonNull(auth.getUid())).child("Artist"); // create node named Artist
 
         etArtistName = findViewById(R.id.etArtistName);
         btnAddArtist = findViewById(R.id.btnAddArtist);
@@ -112,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
 //                the specified reference which is Artist and it will contain all the data inside this DataSnapshot object
 
                 artistList.clear(); // this will prevent this method to again and again fetch all the data stored in the database and only new
-                // data stored will be fetched every time excluding the ones which are already fetched
+                                    // data stored will be fetched every time excluding the ones which are already fetched
+                
                 for(DataSnapshot artistSnapshot : snapshot.getChildren()){
                     Artist artist = artistSnapshot.getValue(Artist.class);
                     artistList.add(artist);
@@ -130,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // code for Update Dialog Box and updating value
+    // code for Update/Delete Dialog Box 
     private void showUpdateDialog(String artistId , String artistName){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 
@@ -197,7 +199,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter the name", Toast.LENGTH_SHORT).show();
         }
         else{
-            // push method creates a unique key inside the node Artist
+            
+            // push method creates everytime a unique key inside the node (Artist) for diff artist added
             String id = databaseReference.push().getKey();
             Artist artist = new Artist(id, name , genre);
             databaseReference.child(id).setValue(artist);  // child(id) is used so that every artist created will be assigned a unique key stored in id variable
