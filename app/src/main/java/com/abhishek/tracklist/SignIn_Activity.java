@@ -49,7 +49,7 @@ public class SignIn_Activity extends AppCompatActivity {
         //      code for progress dialog
         progressDialog = new ProgressDialog(SignIn_Activity.this);
         progressDialog.setTitle("Login");
-        progressDialog.setMessage("Logging in into the account");
+        progressDialog.setMessage("Logging into the account");
 
         tvCreateaccount.setOnClickListener(new View.OnClickListener() {
             @Override
