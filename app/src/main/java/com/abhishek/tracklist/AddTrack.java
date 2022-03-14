@@ -87,7 +87,8 @@ public class AddTrack extends AppCompatActivity {
                     Toast.makeText(AddTrack.this, "Please enter the Track", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    String id1 = databaseReference.push().getKey(); // this id or key is for diff entries of child of node(tracks) added for the same artist
+                    
+                    String id1 = databaseReference.push().getKey(); // this id or key is for diff entries of particular child of node(tracks) added for the same artist
                     Track track = new Track(id1 , trackName , trackRating);
                     databaseReference.child(id1).setValue(track);
 
@@ -120,7 +121,7 @@ public class AddTrack extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void copyList(){
         StringBuilder ListItems = new StringBuilder();
-        ListItems.append("Artist name : ").append(name).append("\n").append("\n");
+        ListItems.append("Artist name : ").append(name).append("\n\n");
         for (int i = 0; i < trackList.size(); i++) {
             ListItems.append("Track Name : ").append(trackList.get(i).getTrackName()).append("\n");
             ListItems.append("Track Rating : ").append(trackList.get(i).getTrackRating()).append("\n\n");
@@ -155,7 +156,7 @@ public class AddTrack extends AppCompatActivity {
         AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.show();
 
-        // code to delete Track list data from firebase database
+        // code to delete Track list's item from firebase database
         btnDeleteTrack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
